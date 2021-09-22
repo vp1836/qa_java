@@ -1,6 +1,6 @@
 package practice.homework;
 
-public class GenericPrinter extends PrintBase {
+public class GenericPrinter {
 
     public <T> void printGeneric(String converter, T[] items) {
         String dataTypeName = ((Object) items[0]).getClass().getName().replace("java.lang.", "");

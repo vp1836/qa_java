@@ -1,4 +1,6 @@
-public class HelloWorld {
+package helpers;
+
+public class DifferentStuff {
 
     public static void main(String[] args) {
 
@@ -31,5 +33,10 @@ public class HelloWorld {
         int z = x + (int) y;
 
         System.out.println(z);
+
+        System.setProperty("default.browser", "chrome");
+        System.out.println(System.getProperty("os.name"));
+        System.out.println(System.getProperty("default.browser"));
+        System.out.println(System.getProperties());
     }
 }
