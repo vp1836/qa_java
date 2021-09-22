@@ -1,4 +1,4 @@
-package practice;
+package practice.classroom;
 
 public class PrimitiveType {
 

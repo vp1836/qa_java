@@ -20,5 +20,16 @@ public class HelloWorld {
         StringBuilder sb = new StringBuilder(dataType);
         sb.delete(0, 9);
         System.out.println(dataType);
+
+        //Casting
+
+        int x = 1;
+        double y = 2.0;
+
+        char a = '1';
+
+        int z = x + (int) y;
+
+        System.out.println(z);
     }
 }

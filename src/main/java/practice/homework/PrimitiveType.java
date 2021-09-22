@@ -1,8 +1,10 @@
 package practice.homework;
 
-public class PrimitiveType extends PrintBase {
+public class PrimitiveType extends GenericPrinter {
 
     public static void main(String[] args) {
+
+        GenericPrinter genericPrinter = new GenericPrinter();
 
         //Double primitive data type
         double sampleRate = 44100.0;
@@ -12,7 +14,8 @@ public class PrimitiveType extends PrintBase {
         double valueWithOffset = 234.87554;
 
         //Print Double data
-        printData("f", sampleRate, sineWaveAmplitude, totalSeconds, frequencyRate, valueWithOffset);
+        Double[] doubles = {sampleRate, sineWaveAmplitude, totalSeconds, frequencyRate, valueWithOffset};
+        genericPrinter.<Double>printGeneric("f", doubles);
 
         //Float primitive data type
         float storedLongitude = -105.0269805f;
@@ -22,7 +25,8 @@ public class PrimitiveType extends PrintBase {
         float currentMortgageRate = 3.056f;
 
         //Print Float data
-        printData("f", storedLongitude, savedLatitude, equatorialCircumference, taxRate, currentMortgageRate);
+        Float[] floats = {storedLongitude, savedLatitude, equatorialCircumference, taxRate, currentMortgageRate};
+        genericPrinter.<Float>printGeneric("f", floats);
 
         //Long primitive data type
         long cellCount = 98753498753987345L;
@@ -32,7 +36,8 @@ public class PrimitiveType extends PrintBase {
         long atomCount = 109382983298323L;
 
         //Print Long data
-        printData("d", cellCount, neuronalCellCount, neuronalConnectionCount, elementaryEntityCount, atomCount);
+        Long[] longs = {cellCount, neuronalCellCount, neuronalConnectionCount, elementaryEntityCount, atomCount};
+        genericPrinter.<Long>printGeneric("d", longs);
 
         //Integer primitive data type
         int productQuantity = 123;
@@ -42,17 +47,8 @@ public class PrimitiveType extends PrintBase {
         int averageDistance = 1023;
 
         //Print Integer data
-        printData("d", productQuantity, productId, itemCount, houseRoomCount, averageDistance);
-
-        //Char primitive data type
-        char charU = 'u';
-        char charB = 'b';
-        char rightArrowSign = '\u2192';
-        char euroCurrencySign = '\u20ac';
-        char bitcoinSign = '\u20bf';
-
-        //Print Char data
-        printData("s", charU, charB, rightArrowSign, euroCurrencySign, bitcoinSign);
+        Integer[] integers = {productQuantity, productId, itemCount, houseRoomCount, averageDistance};
+        genericPrinter.<Integer>printGeneric("d", integers);
 
         //Short primitive data type
         short imageWidth = 1980;
@@ -62,7 +58,8 @@ public class PrimitiveType extends PrintBase {
         short framePixelHeight = 500;
 
         //Print Short data
-        printData("d", imageWidth, imageHeight, loopCounter, framePixelWidth, framePixelHeight);
+        Short[] shorts = {imageWidth, imageHeight, loopCounter, framePixelHeight, framePixelWidth};
+        genericPrinter.<Short>printGeneric("d", shorts);
 
         //Byte primitive data type
         byte velocityValue = 127;
@@ -72,7 +69,19 @@ public class PrimitiveType extends PrintBase {
         byte midiNoteNumber = 16;
 
         //Print Byte data
-        printData("d", velocityValue, pitchBandChange, controllerValueChange, midiChannel, midiNoteNumber);
+        Byte[] bytes = {velocityValue, pitchBandChange, controllerValueChange, midiChannel, midiNoteNumber};
+        genericPrinter.<Byte>printGeneric("d", bytes);
+
+        //Char primitive data type
+        char charU = 'u';
+        char charB = 'b';
+        char rightArrowSign = '\u2192';
+        char euroCurrencySign = '\u20ac';
+        char bitcoinSign = '\u20bf';
+
+        //Print Char data
+        Character[] characters = {charU, charB, rightArrowSign, euroCurrencySign, bitcoinSign};
+        genericPrinter.<Character>printGeneric("s", characters);
 
         //Boolean primitive data type
         boolean isSelected = true;
@@ -82,7 +91,8 @@ public class PrimitiveType extends PrintBase {
         boolean paymentReceived = true;
 
         //Print Boolean data
-        printData("s", !isSelected, !isDisplayed, isElementVisible, isButtonEnabled, paymentReceived);
+        Boolean[] booleans = {!isSelected, !isDisplayed, isElementVisible, isButtonEnabled, paymentReceived};
+        genericPrinter.<Boolean>printGeneric("s", booleans);
 
         //String non-primitive data type (Wrapper Class)
         String name = "Vladimir";
