@@ -20,7 +20,7 @@ public class LoopAndArray {
             System.out.printf("Your discount is 10%%%n%n");
         } else if (age >= 21 && age < 65) {
             System.out.printf("Your discount is 15%%%n%n");
-        } else if (age >= 65 & age <= 110) {
+        } else if (age >= 65 && age <= 110) {
             System.out.printf("Your discount is 20%%%n%n");
         } else {
             System.out.printf("Incorrect age!%n%n");
