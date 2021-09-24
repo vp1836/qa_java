@@ -1,5 +1,7 @@
 package practice.homework;
 
+import helpers.GenericPrinter;
+
 public class PrimitiveType extends GenericPrinter {
 
     public static void main(String[] args) {

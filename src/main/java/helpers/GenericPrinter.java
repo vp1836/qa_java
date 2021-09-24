@@ -1,4 +1,4 @@
-package practice.homework;
+package helpers;
 
 public class GenericPrinter {
 

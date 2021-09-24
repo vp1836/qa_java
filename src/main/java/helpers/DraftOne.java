@@ -1,6 +1,6 @@
 package helpers;
 
-public class DifferentStuff {
+public class DraftOne {
 
     public static void main(String[] args) {
 
