@@ -39,7 +39,7 @@ public class LoopAndArray {
 
         //4. Fill an Array and get Even Numbers from 0 to 10
         int[] numbers = {};
-        for (int i = 0; i <= 10; i++) {
+        for (int i = 0; i <= 100; i++) {
             numbers = Arrays.copyOf(numbers, numbers.length + 1);
             numbers[numbers.length - 1] = i;
 
