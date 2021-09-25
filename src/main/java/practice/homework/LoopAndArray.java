@@ -20,7 +20,7 @@ public class LoopAndArray {
             System.out.printf("Your discount is 10%%%n%n");
         } else if (age >= 21 && age < 65) {
             System.out.printf("Your discount is 15%%%n%n");
-        } else if (age >= 65 & age <= 110) {
+        } else if (age >= 65 && age <= 110) {
             System.out.printf("Your discount is 20%%%n%n");
         } else {
             System.out.printf("Incorrect age!%n%n");
@@ -43,8 +43,12 @@ public class LoopAndArray {
             numbers = Arrays.copyOf(numbers, numbers.length + 1);
             numbers[numbers.length - 1] = i;
 
-            if (i % 2 == 0 && i > 0) {
-                System.out.printf("%d ", i);
+/*            if (numbers[i] % 2 == 0 && numbers[i] > 0) {
+                System.out.printf("%d ", numbers[i]);
+            }*/
+
+            if ((numbers[i] & 1) == 0 && numbers[i] > 0) {
+                System.out.printf("%d ", numbers[i]);
             }
         }
         System.out.printf("%n%n");
