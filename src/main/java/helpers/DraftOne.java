@@ -37,6 +37,13 @@ public class DraftOne {
         System.setProperty("default.browser", "chrome");
         System.out.println(System.getProperty("os.name"));
         System.out.println(System.getProperty("default.browser"));
-        System.out.println(System.getProperties());
+//        System.out.println(System.getProperties());
+
+        //Do while
+        int i = 1;
+        do {
+            System.out.println(i);
+            i++;
+        } while (i <= 10);
     }
 }

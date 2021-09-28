@@ -36,21 +36,27 @@ public class LoopAndArray {
                 System.out.printf("%s%n%n", animal);
             }
         }
+//        int[] numbers = {};
 
         //4. Fill an Array and get Even Numbers from 0 to 10
-        int[] numbers = {};
-        for (int i = 0; i <= 100; i++) {
-            numbers = Arrays.copyOf(numbers, numbers.length + 1);
-            numbers[numbers.length - 1] = i;
+        int[] numbers = new int[11];
+
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = i;
+
+            System.out.println(numbers[i]);
+            if ((numbers[i] & 1) == 0 && numbers[i] > 0) {
+                System.out.printf("%d ", numbers[i]);
+            }
+        }
+//            numbers = Arrays.copyOf(numbers, numbers.length + 1);
+//            numbers[numbers.length - 1] = i;
 
 /*            if (numbers[i] % 2 == 0 && numbers[i] > 0) {
                 System.out.printf("%d ", numbers[i]);
             }*/
 
-            if ((numbers[i] & 1) == 0 && numbers[i] > 0) {
-                System.out.printf("%d ", numbers[i]);
-            }
-        }
+//        }
         System.out.printf("%n%n");
 
         //5. Transport to Work
