@@ -7,14 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Animal {
 
-    public enum Size {
-        SMALL, AVERAGE, BIG;
-    }
-    
-    public enum Activity {
-        WALK, TRAIN, PLAY;
-    }
-
     private String speciesName;
     private String name;
     private int age;
@@ -22,8 +14,8 @@ public class Animal {
     private String color;
     private int energyLevel = 4;
     private boolean isSleeping;
-    private int sleepingHours;
     private Activity activity;
+    private int sleepingHours;
     private String lowEnergyWarning = "";
 
     public Animal() {
@@ -87,10 +79,10 @@ public class Animal {
     }
 
     public void activity(Activity activity) {
-        String animalActivity = activity.toString().toLowerCase();
+        this.activity = activity;
         if (isSleeping) {
             log.info("{} {} sleeps for the next {} hours and can't {}, please do not disturb!", speciesName, name,
-                    sleepingHours, animalActivity);
+                    sleepingHours, this.activity);
         } else if (energyLevel <= 0) {
             log.info("Warning Low Energy! {} {} should be fed or get some rest.", speciesName, name);
         } else {
@@ -98,7 +90,8 @@ public class Animal {
             if (energyLevel <= 0) {
                 lowEnergyWarning = "Warning! Low ";
             }
-            log.info("{} {} {}ed, {}Energy level: {}", speciesName, name, animalActivity, lowEnergyWarning, energyLevel);
+            log.info("{} {} {}ed, {}Energy level: {}", speciesName, name, this.activity, lowEnergyWarning,
+                    energyLevel);
         }
     }
 }
