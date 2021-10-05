@@ -1,9 +1,10 @@
 package practice.homework.animals;
 
+import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-@Setter
+@Setter @Getter
 @Slf4j
 public class Animal {
 
@@ -18,23 +19,12 @@ public class Animal {
     private int sleepingHours;
     private String lowEnergyWarning = "";
 
-    public Animal() {
-    }
-
-    public Animal(String speciesName, String name, int age, Size size) {
-        this.speciesName = speciesName;
-        this.name = name;
-        this.age = age;
-        this.size = size;
-    }
-
-    public Animal(String speciesName, String name, int age, Size size, String color, boolean isSleeping) {
+    public Animal(String speciesName, String name, int age, Size size, String color) {
         this.speciesName = speciesName;
         this.name = name;
         this.age = age;
         this.size = size;
         this.color = color;
-        this.isSleeping = isSleeping;
     }
 
     public void getAnimalInfo() {
@@ -63,7 +53,7 @@ public class Animal {
         if (energyLevel >= 4) {
             log.info("{} {} is fed already and don't want to eat. Energy level: {}", speciesName, name, energyLevel);
         } else {
-            energyLevel = 4;
+            energyLevel += 1;
             log.info("{} {} is fed. Energy Level: {}", speciesName, name, energyLevel);
         }
     }
@@ -86,7 +76,7 @@ public class Animal {
         } else if (energyLevel <= 0) {
             log.info("Warning Low Energy! {} {} should be fed or get some rest.", speciesName, name);
         } else {
-            energyLevel--;
+            energyLevel -= 1;
             if (energyLevel <= 0) {
                 lowEnergyWarning = "Warning! Low ";
             }

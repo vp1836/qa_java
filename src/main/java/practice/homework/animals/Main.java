@@ -4,22 +4,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Animal dog = new Animal("Dog", "Tesla", 2, Size.SMALL);
+        Animal camel = new Animal("Camel", "Andy", 7, Size.BIG, "Beige");
 
-        Animal camel = new Animal();
-
-
-        camel.setSpeciesName("Camel");
-        camel.setName("Andy");
-        camel.setAge(7);
-        camel.setSize(Size.BIG);
-        camel.setColor("Beige");
         camel.getAnimalInfo();
 
         camel.activity(Activity.WALK);
         camel.activity(Activity.PLAY);
         camel.activity(Activity.TRAIN);
         camel.activity(Activity.TRAIN);
-
+        camel.activity(Activity.TRAIN);
+        camel.feed();
+        camel.sleep(1);
+        camel.activity(Activity.PLAY);
+        camel.sleep(1);
+        camel.wakeUp();
+        camel.wakeUp();
     }
 }
