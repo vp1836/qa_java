@@ -6,10 +6,12 @@ import java.util.Locale;
 
 public class Main {
 
-    public static void main(String[] args) {
-
+//    public static void main(String[] args) {
+//
 //        Locale.setDefault(new Locale("ru", "LV", "MAC"));
-        System.out.println(Locale.getDefault());
+//        System.out.println(Locale.getDefault());
+//
+//    }
 
-    }
+//    -Duser.country=FR -Duser.language=en-US
 }
