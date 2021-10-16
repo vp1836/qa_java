@@ -2,22 +2,18 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import page_object.MainPage;
+import utils.Singleton;
 
-import static utils.PropertiesReader.getProperties;
 
 public class MainPageTest {
+    Singleton singleton = Singleton.getInstance();
     WebDriver driver;
     MainPage mainPage;
 
     @BeforeEach
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get(getProperties().getProperty("home.page"));
-//        mainPage = PageFactory.initElements(driver, MainPage.class);
+        driver = singleton.openBrowser();
         mainPage = new MainPage(driver);
     }
 
@@ -28,6 +24,8 @@ public class MainPageTest {
 
     @Test
     public void findAllElementsTest() {
-        System.out.println(mainPage.getAllProducts().size());
+        System.out.println(
+                mainPage.getAllProducts().size()
+        );
     }
 }
