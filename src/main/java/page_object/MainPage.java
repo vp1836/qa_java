@@ -3,20 +3,33 @@ package page_object;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import utils.DriverManager;
 
 import java.util.List;
 
 public class MainPage {
 
-    WebDriver driver;
+    private final WebDriver driver = DriverManager.getInstance();
 
     private final By productsElements = By.xpath("//ul[contains(@class,'products')]/li");
 
-    public MainPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public List<WebElement> getAllProducts() {
         return driver.findElements(productsElements);
+    }
+
+    public ProductPage selectProductFromListByName(String productName) {
+
+        getAllProducts().stream()
+                .filter(product -> product.getText().contains(productName))
+                .findFirst()
+                .ifPresent(WebElement::click);
+
+//        for (WebElement product : getAllProducts()) {
+//            if(product.getText().contains(productName)){
+//                product.click();
+//                break;
+//            }
+//        }
+        return new ProductPage();
     }
 }
