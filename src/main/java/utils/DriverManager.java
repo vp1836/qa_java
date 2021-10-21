@@ -4,19 +4,24 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
-
-
 public class DriverManager {
 
-    private static WebDriver driver;
+    private static DriverManager driverManager = null;
+    private WebDriver driver;
 
-    public static WebDriver getInstance() {
-        if (driver == null) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public DriverManager() {
+        WebDriverManager.chromedriver().setup();
+        this.driver = new ChromeDriver();
+    }
+
+    public static DriverManager getInstance() {
+        if (driverManager == null) {
+            driverManager = new DriverManager();
         }
+        return driverManager;
+    }
+
+    public WebDriver getDriver() {
         return driver;
     }
 }

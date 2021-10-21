@@ -5,13 +5,15 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import page_object.MainPage;
 import utils.DriverManager;
+import utils.LocalDriverManager;
 
 import static utils.PropertiesReader.getProperties;
 
 @Slf4j
 public class CouponCodeTest {
 
-    private final WebDriver driver = DriverManager.getInstance();
+    private final WebDriver driver = LocalDriverManager.getInstance();
+
     private final MainPage mainPage = new MainPage();
 
     @BeforeEach
@@ -28,8 +30,13 @@ public class CouponCodeTest {
                 .applyCouponCode();
     }
 
+    @Test
+    public void applyCouponTest2() {
+        System.out.println("Test 2");
+    }
+
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        LocalDriverManager.closeDriver();
     }
 }
