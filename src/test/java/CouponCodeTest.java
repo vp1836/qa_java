@@ -22,7 +22,10 @@ public class CouponCodeTest {
     @Test
     public void applyCouponTest() {
         mainPage.selectProductFromListByName("Polo")
-                .addProductToCart();
+                .addProductToCart()
+                .goToCart()
+                .enterCouponCode("easy_discount")
+                .applyCouponCode();
     }
 
     @AfterEach

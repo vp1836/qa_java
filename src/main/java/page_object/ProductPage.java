@@ -14,6 +14,7 @@ public class ProductPage {
 
     private final By addToCartElement = By.name("add-to-cart");
     private final By message = By.className("woocommerce-message");
+    private final By cartButton = By.className("cart-contents");
 
     public ProductPage addProductToCart() {
         driver.findElement(addToCartElement).click();
@@ -22,5 +23,10 @@ public class ProductPage {
                 containsString("has been added to your cart")
         );
         return this;
+    }
+
+    public CartPage goToCart() {
+        driver.findElement(cartButton).click();
+        return new CartPage();
     }
 }
