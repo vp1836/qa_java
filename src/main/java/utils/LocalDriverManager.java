@@ -29,9 +29,10 @@ public class LocalDriverManager {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 //                chromeOptions.addArguments("--headless");
-                chromeOptions.addArguments("--incognito");
-                chromeOptions.addArguments("start-maximized");
-                return new ChromeDriver(chromeOptions);
+//                chromeOptions.addArguments("--incognito");
+//                chromeOptions.addArguments("start-maximized");
+//                return new ChromeDriver(chromeOptions);
+                return new ChromeDriver();
             case "FIREFOX":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
