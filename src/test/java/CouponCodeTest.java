@@ -31,33 +31,42 @@ public class CouponCodeTest {
 
     @Test
     public void applyCouponSuccessTest() {
-        cartPage.enterCouponCode("easy_discount")
-                .applyCouponCode()
+        cartPage.enterAndApplyCouponCode("easy_discount")
                 .checkCartMessageSuccess("Coupon code applied successfully");
     }
 
     @Test
     public void applyCouponFailTest() {
-        cartPage.enterCouponCode("bad_discount")
-                .applyCouponCode()
+        cartPage.enterAndApplyCouponCode("bad_discount")
                 .checkCartMessageFail("does not exist!");
     }
 
     @Test
     public void applyCouponExpiredTest() {
-        cartPage.enterCouponCode("expired")
-                .applyCouponCode()
+        cartPage.enterAndApplyCouponCode("expired")
                 .checkCartMessageFail("This coupon has expired");
     }
 
     @Test
-    public void removeCouponSuccessTest() {
-        cartPage.enterCouponCode("easy_discount")
-                .applyCouponCode()
+    public void applyMultipleCouponsAndRemoveTest() {
+        cartPage.enterAndApplyCouponCode("easy_discount")
                 .checkCartMessageSuccess("Coupon code applied successfully")
-                .removeCoupon()
-                .checkCartMessageSuccess("Coupon has been removed");
+                .enterAndApplyCouponCode("additional_discount")
+                .checkCartMessageSuccess("Coupon code applied successfully")
+                .removeCoupon("easy_discount")
+                .checkCartMessageSuccess("has been removed")
+                .removeCoupon("additional_discount")
+                .checkCartMessageSuccess("has been removed");
     }
+
+    @Test
+    public void overWriteCouponsTest() {
+        cartPage.enterAndApplyCouponCode("acodemy10off")
+                .checkCartMessageSuccess("Coupon code applied successfully")
+                .enterAndApplyCouponCode("acodemy20off")
+                .checkCartMessageSuccess("Coupon code applied successfully");
+    }
+
 
     @AfterEach
     public void tearDown() {
