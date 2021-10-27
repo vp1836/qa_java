@@ -17,7 +17,7 @@ public class LocalDriverManager {
     public static WebDriver getInstance() {
         if (driver == null) {
             driver = configureDriver();
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
         return driver;
     }

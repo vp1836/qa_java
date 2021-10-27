@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.LocalDriverManager;
+import utils.SharedContext;
+import utils.StaticKeys;
 
 import java.util.List;
 
@@ -23,6 +25,8 @@ public class MainPage {
                 .filter(product -> product.getText().contains(productName))
                 .findFirst()
                 .ifPresent(WebElement::click);
+
+        SharedContext.setValue(StaticKeys.CURRENT_ITEM, productName);
 
 //        for (WebElement product : getAllProducts()) {
 //            if(product.getText().contains(productName)){

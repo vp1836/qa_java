@@ -2,6 +2,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import page_object.CartPage;
@@ -24,15 +26,15 @@ public class CouponCodeTest {
     @BeforeEach
     public void setUp() {
         driver.get(getProperties().getProperty("home.page"));
-        mainPage.selectProductFromListByName("Polo")
-                .addProductToCart()
-                .goToCart();
     }
 
-    @Test
-    public void applyCouponSuccessTest() {
-        cartPage.enterAndApplyCouponCode("easy_discount")
-                .checkCartMessageSuccess("Coupon code applied successfully");
+    @ParameterizedTest(name = "Buy product with name {0} and apply coupon {1}")
+    @CsvSource({"Album, acodemy10off", "Polo, acodemy20off"})
+    public void applyCouponSuccessTest(String productName, String couponCode) {
+        mainPage.selectProductFromListByName(productName)
+                .addProductToCart()
+                .goToCart()
+                .enterAndApplyCouponCode(couponCode);
     }
 
     @Test
@@ -50,8 +52,10 @@ public class CouponCodeTest {
     @Test
     public void applyMultipleCouponsAndRemoveTest() {
         cartPage.enterAndApplyCouponCode("easy_discount")
+                .checkRemoveLink("easy_discount")
                 .checkCartMessageSuccess("Coupon code applied successfully")
                 .enterAndApplyCouponCode("additional_discount")
+                .checkRemoveLink("additional_discount")
                 .checkCartMessageSuccess("Coupon code applied successfully")
                 .removeCoupon("easy_discount")
                 .checkCartMessageSuccess("has been removed")
@@ -62,8 +66,10 @@ public class CouponCodeTest {
     @Test
     public void overWriteCouponsTest() {
         cartPage.enterAndApplyCouponCode("acodemy10off")
+                .checkRemoveLink("acodemy10off")
                 .checkCartMessageSuccess("Coupon code applied successfully")
                 .enterAndApplyCouponCode("acodemy20off")
+                .checkRemoveLink("acodemy20off")
                 .checkCartMessageSuccess("Coupon code applied successfully");
     }
 
