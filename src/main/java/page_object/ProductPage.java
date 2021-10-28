@@ -1,5 +1,6 @@
 package page_object;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.LocalDriverManager;
@@ -12,6 +13,7 @@ import static org.hamcrest.Matchers.*;
 import static page_object.StaticWebElements.*;
 import static utils.Messages.*;
 
+@Slf4j
 public class ProductPage {
 
     private final WebDriver driver = LocalDriverManager.getInstance();
@@ -21,10 +23,9 @@ public class ProductPage {
 
     public ProductPage addProductToCart() {
         driver.findElement(addToCartElement).click();
+        log.info("Product added to cart");
         assertThat(driver.findElement(MESSAGE_SUCCESS_ELEMENT).isDisplayed(), is(Boolean.TRUE));
-        assertThat(driver.findElement(MESSAGE_SUCCESS_ELEMENT).getText(),
-                containsString( String.format(PRODUCT_ADDED_TO_CART, SharedContext.getValue(StaticKeys.CURRENT_ITEM)))
-        );
+        assertThat(driver.findElement(MESSAGE_SUCCESS_ELEMENT).getText(), containsString(String.format(PRODUCT_ADDED_TO_CART, SharedContext.getValue(StaticKeys.CURRENT_ITEM))));
         return this;
     }
 

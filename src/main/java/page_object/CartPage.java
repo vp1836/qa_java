@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.LocalDriverManager;
 import utils.Messages;
+import utils.PropertiesReader;
 
 import java.time.Duration;
 
@@ -25,7 +26,7 @@ public class CartPage {
     private final By applyCouponButton = By.name("apply_coupon");
 
     public CartPage() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(PropertiesReader.readProperties().getProperty("explicit.wait"))));
     }
 
     public CartPage enterAndApplyCouponCode(String couponCode) {
@@ -55,9 +56,7 @@ public class CartPage {
 //        assertThat(driver.findElement(messageError).isDisplayed(), is(Boolean.TRUE));
         wait.until(ExpectedConditions.visibilityOfElementLocated(MESSAGE_ERROR_ELEMENT));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(MESSAGE_ERROR_ELEMENT, cartMessage));
-        assertThat("Message is not correct",
-                driver.findElement(MESSAGE_ERROR_ELEMENT).getText(),
-                containsString(cartMessage)
+        assertThat("Message is not correct", driver.findElement(MESSAGE_ERROR_ELEMENT).getText(), containsString(cartMessage)
         );
         return this;
     }

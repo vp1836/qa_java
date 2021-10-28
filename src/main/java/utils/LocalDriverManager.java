@@ -1,13 +1,18 @@
 package utils;
 
-import exceptions.UnsupportedDriverException;
+import exceptions.UnsupportedEnvironmentException;
+import exceptions.UnsupportedBrowserException;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.URI;
 import java.time.Duration;
 
 public class LocalDriverManager {
@@ -22,7 +27,7 @@ public class LocalDriverManager {
         return driver;
     }
 
-    public static WebDriver configureDriver() {
+    public static WebDriver localDriver() {
         String browser = PropertiesReader.getProperties().getProperty("browser").toUpperCase();
         switch (browser) {
             case "CHROME":
@@ -39,7 +44,34 @@ public class LocalDriverManager {
                 firefoxOptions.addArguments("--headless");
                 return new FirefoxDriver();
             default:
-                throw new UnsupportedDriverException("Following driver is not supported " + browser);
+                throw new UnsupportedBrowserException("Following driver is not supported " + browser);
+        }
+    }
+
+    @SneakyThrows
+    public static RemoteWebDriver remoteDriver() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("chrome");
+//        capabilities.setVersion("");
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", false);
+
+        return new RemoteWebDriver(
+                URI.create("http://159.65.126.109:4444/wd/hub").toURL(),
+                capabilities
+        );
+
+    }
+
+    public static WebDriver configureDriver() {
+        String environment = PropertiesReader.readProperties().getProperty("environment");
+
+        switch (environment) {
+            case "local":
+                return localDriver();
+            case "remote":
+                return remoteDriver();
+            default: throw new UnsupportedEnvironmentException(String.format("'%s' environment is not supported", environment));
         }
     }
 
