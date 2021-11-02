@@ -38,7 +38,7 @@ public class CouponCodeTest {
         cartPage.checkRemoveLink("acodemy10off")
                 .removeCoupon("acodemy10off");
     }
-//Commented Code Jenkins Test
+    //Jenkins Test
 //    @Test
 //    public void applyCouponFailTest() {
 //        cartPage.enterAndApplyCouponCode("bad_discount")
