@@ -32,7 +32,7 @@ public class LocalDriverManager {
         switch (browser) {
             case "CHROME":
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
+//                ChromeOptions chromeOptions = new ChromeOptions();
 //                chromeOptions.addArguments("--headless");
 //                chromeOptions.addArguments("--incognito");
 //                chromeOptions.addArguments("start-maximized");
@@ -71,7 +71,8 @@ public class LocalDriverManager {
                 return localDriver();
             case "remote":
                 return remoteDriver();
-            default: throw new UnsupportedEnvironmentException(String.format("'%s' environment is not supported", environment));
+            default:
+                throw new UnsupportedEnvironmentException(String.format("'%s' environment is not supported", environment));
         }
     }
 

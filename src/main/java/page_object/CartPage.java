@@ -10,6 +10,7 @@ import utils.Messages;
 import utils.PropertiesReader;
 
 import java.time.Duration;
+import java.util.Locale;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -38,7 +39,7 @@ public class CartPage {
     }
 
     public CartPage checkRemoveLink(String couponCode) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
+        wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//a[contains(@href, '" + couponCode + "')]"))
         );
         return this;
@@ -62,8 +63,10 @@ public class CartPage {
     }
 
     public CartPage removeCoupon(String couponCode) {
-        driver.findElement(By.xpath("//a[contains(@href, '" + couponCode + "')]")).click();
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//a[contains(@href, '" + couponCode + "')]")));
+        checkRemoveLink(couponCode);
+        WebElement coupon = driver.findElement(By.xpath("//a[contains(@href, '" + couponCode.toLowerCase() + "')]"));
+        coupon.click();
+        wait.until(ExpectedConditions.invisibilityOf(coupon));
         return this;
     }
 }
