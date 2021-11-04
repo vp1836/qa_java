@@ -9,7 +9,7 @@ public class RestAssuredTest {
 
     @BeforeEach
     public void setUp() {
-        RestAssured.baseURI = "http://api.zippopotam.us";
+        io.restassured.RestAssured.baseURI = "http://api.zippopotam.us";
     }
 
     @Test
